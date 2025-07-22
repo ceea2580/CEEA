@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+  <meta charset="UTF-8" />
+  <title>SEE Result Checker</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f2f5;
+      padding: 40px;
+      text-align: center;
+    }
+    .container {
+      max-width: 480px;
+      margin: auto;
+      background: white;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    h2 {
+      margin-bottom: 25px;
+      color: #1a237e;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 14px;
+      margin: 12px 0;
+      font-size: 16px;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      box-sizing: border-box;
+      transition: border-color 0.3s;
+    }
+    input[type="text"]:focus {
+      border-color: #1a237e;
+      outline: none;
+    }
+    button {
+      background-color: #1a237e;
+      color: white;
+      padding: 14px 32px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 12px;
+      width: 100%;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #3949ab;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>CEEA Result Checker</h2>
+    <form id="resultForm" onsubmit="openResult(event)">
+      <input
+        type="text"
+        id="symbol"
+        placeholder="Symbol Number"
+        required
+        autocomplete="off"
+      />
+      <input
+        type="text"
+        id="dob"
+        placeholder="Date of Birth (YYYY-MM-DD)"
+        required
+        autocomplete="off"
+      />
+      <button type="submit">Check Result</button>
+    </form>
+  </div>
+
+  <script>
+    function openResult(e) {
+      e.preventDefault();
+      const symbol = document.getElementById("symbol").value.trim();
+      const dob = document.getElementById("dob").value.trim();
+
+      if (!symbol || !dob) {
+        alert("Please enter both Symbol Number and Date of Birth.");
+        return;
+      }
+
+      const url = `https://script.google.com/macros/s/AKfycbz1Sp7YzzTLZVIK1EsuBC3fKxVKo_ehS6F66vTnlEe_Ia3KMQf-WFY999q9DMoucxf6/exec?symbol=${encodeURIComponent(
+        symbol
+      )}&dob=${encodeURIComponent(dob)}`;
+
+      // नयाँ ट्याबमा खोल्नुहोस्
+      window.open(url, "_blank");
+    }
+  </script>
+</body>
+</html>
